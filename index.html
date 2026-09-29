@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aquele dos 21 Anos da Tatah</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    @font-face {
+      font-family: 'FriendsFont';
+      src: url('https://fonts.cdnfonts.com/s/14107/GABRIELWEISSFRIENDSFONT.woff') format('woff');
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #9483d6;
+      color: #333;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* TELA 1: CAPA */
+    #page-cover {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      background-color: #9483d6;
+    }
+
+    .cover-image-container {
+      width: 100%;
+      max-width: 450px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cover-image {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      object-fit: contain;
+    }
+
+    .btn-enter {
+      background-color: #F8B12A;
+      color: #111;
+      border: 3px solid #111;
+      padding: 16px 45px;
+      font-size: 1.2rem;
+      font-weight: 900;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 0 #111;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .btn-enter:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 0 #111;
+      background-color: #ffbe3b;
+    }
+
+    .btn-enter:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #111;
+    }
+
+    /* TELA 2: CONTEÚDO */
+    #page-content {
+      display: none;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px 60px 20px;
+    }
+
+    .music-player {
+      background: #111;
+      color: #fff;
+      padding: 15px 25px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 35px;
+      border: 2px solid #F8B12A;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .music-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .music-icon {
+      font-size: 1.5rem;
+    }
+
+    .music-title {
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .music-artist {
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+
+    audio {
+      height: 35px;
+    }
+
+    .title-box {
+      background-color: #F8B12A;
+      border: 4px solid #111;
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 35px;
+      box-shadow: 6px 6px 0 #111;
+    }
+
+    .title-box h1 {
+      font-family: 'FriendsFont', 'Montserrat', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: #111;
+      letter-spacing: 2px;
+    }
+
+    .dot {
+      display: inline-block;
+      margin: 0 2px;
+      font-weight: bold;
+    }
+    .dot-red { color: #E2231A; }
+    .dot-yellow { color: #F59E0B; }
+    .dot-blue { color: #00A3E0; }
+
+    /* Carta / Mensagem */
+    .text-card {
+      background: #ffffff;
+      border: 3px solid #111;
+      border-radius: 20px;
+      padding: 35px;
+      margin-bottom: 40px;
+      box-shadow: 6px 6px 0 #111;
+    }
+
+    .message-text {
+      font-family: 'Caveat', cursive;
+      font-size: 1.75rem;
+      line-height: 1.6;
+      color: #222;
+    }
+
+    .message-text p {
+      margin-bottom: 18px;
+    }
+
+    .message-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Galeria de Polaroids */
+    .gallery-title {
+      text-align: center;
+      color: #fff;
+      font-family: 'FriendsFont', 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 0 #111;
+      letter-spacing: 2px;
+    }
+
+    .polaroid-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+
+    .polaroid-card {
+      background: #fff;
+      padding: 15px 15px 25px 15px;
+      border-radius: 4px;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.25);
+      transform: rotate(calc(-3deg + 6deg * var(--rand)));
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .polaroid-card:hover {
+      transform: scale(1.05) rotate(0deg) !important;
+      z-index: 10;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+    }
+
+    .polaroid-img-box {
+      width: 100%;
+      height: 180px;
+      background-color: #f5f5f5;
+      border: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .polaroid-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    footer {
+      text-align: center;
+      color: #fff;
+      font-family: 'FriendsFont', 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 1.8rem;
+      padding: 25px;
+      border-top: 2px dashed rgba(255,255,255,0.4);
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TELA 1: CAPA -->
+  <div id="page-cover">
+    <div class="cover-image-container">
+      <img src="capa.jpg" alt="Aquele em que Tatah faz 21" class="cover-image">
+    </div>
+
+    <button class="btn-enter" onclick="openPage2()">CLIQUE AQUI</button>
+  </div>
+
+  <!-- TELA 2: CONTEÚDO -->
+  <div id="page-content">
+    
+    <div class="music-player">
+      <div class="music-info">
+        <span class="music-icon">🎵</span>
+        <div>
+          <div class="music-title">dorothea</div>
+          <div class="music-artist">Taylor Swift</div>
+        </div>
+      </div>
+      <audio controls autoplay id="bg-music">
+        <source src="dorothea.mp3" type="audio/mpeg">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+      </audio>
+    </div>
+
+    <div class="title-box">
+      <h1>
+        A<span class="dot dot-red">•</span>Q<span class="dot dot-blue">•</span>U<span class="dot dot-yellow">•</span>E<span class="dot dot-red">•</span>L<span class="dot dot-blue">•</span>E DOS 21 ANOS
+      </h1>
+    </div>
+
+    <div class="text-card">
+      <div class="message-text">
+        <p>Acho que todo mundo deveria ter uma Thais na vida.</p>
+        <p>Uma amiga pra qualquer hora, pra dividir as coisas boas, reclamar das ruins, rir de coisas que provavelmente ninguém mais acharia graça e, principalmente, alguém que você sabe que pode contar.</p>
+        <p>E hoje, no seu aniversário, eu só consigo pensar em como sou sortuda por ter você na minha vida como melhor amiga. São tantas histórias, momentos, conversas e memórias que eu nem sei como colocar tudo em um texto só. Só sei que, quando penso em amizade, é impossível não pensar em você.</p>
+        <p>Espero que seus 21 anos sejam cheios de momentos que façam você olhar pra trás e pensar “que ano bom”. Que não faltem motivos pra comemorar, pessoas que te façam bem, sonhos se realizando. Que essa nova fase seja leve, divertida e do jeito que você merece. Que você continue sendo essa pessoa incrível, engraçada e especial que faz diferença na vida de quem tem a sorte de estar por perto.</p>
+        <p>E assim como eu sei que posso contar com você nos momentos bons e ruins, quero que você saiba que também pode contar comigo para tudo. Pra comemorar as coisas boas, enfrentar as ruins, ouvir seus surtos, rir das coisas mais aleatórias ou simplesmente estar ali quando você precisar.</p>
+        <p>Obrigada por todas as conversas, risadas, conselhos, histórias e por ser minha best em tantos momentos.</p>
+        <p>Feliz 21, Tatah! 💜<br>
+        Que você aproveite muito o seu dia, porque ele é todinho seu. E, se todo mundo deveria ter uma Thais na vida, eu tenho muita sorte de você ser a minha.</p>
+      </div>
+    </div>
+
+    <div class="gallery-title">
+      M<span class="dot dot-red">•</span>E<span class="dot dot-yellow">•</span>M<span class="dot dot-blue">•</span>O<span class="dot dot-red">•</span>R<span class="dot dot-yellow">•</span>I<span class="dot dot-blue">•</span>A<span class="dot dot-red">•</span>S
+    </div>
+    <div class="polaroid-grid" id="polaroid-container"></div>
+
+    <footer>
+      P<span class="dot dot-red">•</span>A<span class="dot dot-yellow">•</span>R<span class="dot dot-blue">•</span>A<span class="dot dot-red">•</span>B<span class="dot dot-yellow">•</span>E<span class="dot dot-blue">•</span>N<span class="dot dot-red">•</span>S<span class="dot dot-yellow">•</span> T<span class="dot dot-blue">•</span>A<span class="dot dot-red">•</span>T<span class="dot dot-yellow">•</span>A<span class="dot dot-blue">•</span>H
+    </footer>
+
+  </div>
+
+  <script>
+    function openPage2() {
+      document.getElementById('page-cover').style.display = 'none';
+      document.getElementById('page-content').style.display = 'block';
+      
+      const audio = document.getElementById('bg-music');
+      if (audio) {
+        audio.play().catch(function() {
+          console.log("Autoplay bloqueado pelo navegador.");
+        });
+      }
+    }
+
+    // Gerar as 32 Molduras de Polaroid (sem botões de alteração/edição)
+    const container = document.getElementById('polaroid-container');
+    for (let i = 1; i <= 32; i++) {
+      const card = document.createElement('div');
+      card.className = 'polaroid-card';
+      card.style.setProperty('--rand', Math.random());
+
+      const imgBox = document.createElement('div');
+      imgBox.className = 'polaroid-img-box';
+
+      const img = document.createElement('img');
+      img.src = `fotos/${i}.jpg`;
+
+      imgBox.appendChild(img);
+      card.appendChild(imgBox);
+      container.appendChild(card);
+    }
+  </script>
+</body>
+</html>
